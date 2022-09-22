@@ -41,7 +41,7 @@ const userSchema = new dynamoose.Schema(
         },
         userInfo:{
             type: [userInfoSchema],
-            default: []
+            default: [] 
             // type: Schema.Types.ObjectId,
             // ref: "userInfo"
         },
