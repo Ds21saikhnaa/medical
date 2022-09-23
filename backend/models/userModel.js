@@ -1,15 +1,20 @@
 const dynamoose = require("dynamoose");
-const uuidv4 = require("uuidv4");
+const { uuid } = require('uuidv4');
 
 const userInfoSchema = new dynamoose.Schema(
-    
-)
+    {
+        age:{
+        type: Number,
+        required: true
+        }
+    }
+);
 
 const userSchema = new dynamoose.Schema(
     {
         id:{
             type: String,
-            default: () => uuidv4()
+            default: () => uuid()
         },
         email: {
             type: String,
@@ -40,8 +45,9 @@ const userSchema = new dynamoose.Schema(
             select: false
         },
         userInfo:{
-            type: [userInfoSchema],
-            default: [] 
+            type: Object,
+            schema: [userInfoSchema],
+            default: {}
             // type: Schema.Types.ObjectId,
             // ref: "userInfo"
         },

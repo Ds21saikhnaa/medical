@@ -9,9 +9,11 @@
   "devDependencies": {
     "dynamoose": "^3.1.0",
     "serverless": "^3.22.0",
+    "serverless-dotenv-plugin": "^4.0.2",
     "serverless-offline": "^10.1.0"
   },
   "dependencies": {
+    "uuid": "^9.0.0",
     "uuidv4": "^6.2.13"
   }
 }

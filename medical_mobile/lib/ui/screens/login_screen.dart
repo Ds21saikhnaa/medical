@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_mobile/ui/common/my_button.dart';
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/widgets.dart';
@@ -20,10 +21,19 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-            child: Container(
-          color: Colors.white,
-          child: const Text("login screen"),
-        )),
+          child: Container(
+            //width: 100,
+            color: Colors.white,
+            child: Column(
+              children: [
+                MyButton(
+                  text: "Log in",
+                  onPressed: () => print("hello"),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
