@@ -1,7 +1,8 @@
 "use strict";
 const AWS = require("aws-sdk")
-const {connectDb} = require("./dbConfig/db");
-const { userLogin, userRegister, createUserTable } = require("./controller/userController");
+const {connectDB} = require("./dbConfig/db");
+const { userLogin, userRegister, getUserInfo, newUserInfo } = require("./controller/userController");
+const { protect } = require("./middleware/protect")
 const dflt = () => {
   return {
     statusCode: 200,
@@ -9,22 +10,29 @@ const dflt = () => {
   }
 }
 
-module.exports.hello = async (event) => {
-  await connectDb();
+module.exports.hello = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  connectDB();
   const route = event.pathParameters.routeName;
   const paramsId = event.pathParameters.id;
   const met = event.requestContext.http.method;
   if (met === "GET") {
+    switch(route){
+      case "userInfo":
+        await protect(event)
+        return getUserInfo(event, paramsId)
+    }
     return dflt();
   }
   if(met === "POST"){
     switch(route){
-      case "new": 
-        return createUserTable();
       case "login":
         return userLogin(event);
       case "register":
         return userRegister(event);
+      case "newInfo":
+        await protect(event)
+        return newUserInfo(event, paramsId);
       default: 
         return dflt();
     }

@@ -28,7 +28,7 @@ class _MyButtonState extends State<MyButton> {
           child:
               Text(widget.text!, style: const TextStyle(color: Colors.white)),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(20),
             color: _isSelected
                 ? const Color.fromARGB(255, 213, 140, 135)
                 : const Color(0xFF3797EF),
