@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medical_mobile/apis/rest_api.dart';
 import 'package:medical_mobile/ui/common/my_button.dart';
 import 'package:medical_mobile/ui/common/my_input.dart';
 
 import '../../utils/routes.dart';
+import '../../utils/sp_manager.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +19,19 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = "";
   String password = "";
+  RestApi _restApi = RestApi();
+
+  void _login() async {
+    var res = await _restApi.login({"email": email, "password": password});
+    var conToken = res.data['token'];
+    if (res.success == true) {
+      SpManager sharedPreference = SpManager();
+      await sharedPreference.init();
+      sharedPreference.saveAccessToken(conToken);
+      Get.offAllNamed(homeRoute);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,7 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     "log in",
                     style: TextStyle(fontSize: 48),
                   ),
-                  //child: Image.asset("assets/images/Logo.png"),
                 ),
                 MyInput(
                   title: "email",
@@ -51,9 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   isHidden: true,
                 ),
                 MyButton(
-                  text: "Log in",
-                  onPressed: () => Get.toNamed(registerRoute),
-                ),
+                    text: "Log in",
+                    onPressed: _login //() => Get.toNamed(registerRoute),
+                    ),
                 Padding(
                   padding: const EdgeInsets.only(left: 100, top: 50),
                   child: Row(

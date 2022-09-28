@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:medical_mobile/apis/rest_api_client.dart';
 import 'package:medical_mobile/ui/screens/home_screen.dart';
 import 'package:medical_mobile/ui/screens/login_screen.dart';
+import 'package:medical_mobile/ui/screens/splash_screen.dart';
 import 'package:medical_mobile/ui/screens/user_field_screen.dart';
 import 'package:medical_mobile/utils/routes.dart';
 
 import 'ui/screens/register_screen.dart';
 
 void main() {
+  RestApiClient.init(baseUrl: 'http://localhost:3000/');
   runApp(const MyApp());
 }
 
@@ -17,10 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: loginRoute,
+      initialRoute: splashRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.grey),
       routes: <String, WidgetBuilder>{
+        splashRoute: (context) => const SplashScreen(),
         loginRoute: (context) => const LoginScreen(),
         registerRoute: (context) => const RegisterScreen(),
         newUserRoute: (context) => const UserFieldScreen(),
