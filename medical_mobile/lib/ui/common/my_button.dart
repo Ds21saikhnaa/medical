@@ -10,7 +10,6 @@ class MyButton extends StatefulWidget {
   @override
   State<MyButton> createState() => _MyButtonState();
 }
-
 class _MyButtonState extends State<MyButton> {
   final _isSelected = false;
   @override

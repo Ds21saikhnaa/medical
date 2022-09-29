@@ -35,7 +35,8 @@ class _MyInputState extends State<MyInput> {
   }
 
   Widget build(BuildContext context) {
-    return (Container(
+    return (
+        Container(
         color: const Color(0xA1FAFAFA),
         margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: Column(

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/src/foundation/key.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:medical_mobile/ui/pages/appointment.dart';
 import 'package:medical_mobile/ui/pages/chat.dart';
 import 'package:medical_mobile/ui/pages/history.dart';
