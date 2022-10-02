@@ -15,24 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
   double _bottomPadding = 0.0;
   final PageController _pageController = PageController();
-  final List<IconData> _dummyData = [
-    Icons.home,
-    //Icons.note_add,
-    Icons.calendar_month,
-    Icons.history,
-    Icons.chat,
-    Icons.person,
-  ];
-
-  final List<String> _buttonName = [
-    "home",
-    "aptmnt",
-    "history",
-    "chat",
-    "profile"
-  ];
   final List<Widget> _children = [
     const Home(),
     const Appointment(),
@@ -40,6 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
     const Chat(),
     const ProFile()
   ];
+  void _onItemTapped(int index) {
+    setState(() {});
+    _selectedIndex = index;
+    _pageController.animateToPage(
+      _selectedIndex,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     _bottomPadding = MediaQuery.of(context).padding.bottom;
@@ -47,86 +41,39 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         controller: _pageController,
         children: _children,
+        onPageChanged: (index) {
+          setState(() {});
+          _selectedIndex = index;
+        },
       ),
-      bottomNavigationBar: _customNavigationBar(),
-    );
-  }
-
-  Widget _customNavigationBar() {
-    return Container(
-      color: Colors.white,
-      width: double.infinity,
-      height: 80 + _bottomPadding,
-      padding:
-          EdgeInsets.only(bottom: _bottomPadding, top: _bottomPadding - 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: _dummyData.asMap().entries.map((entry) {
-          int idx = entry.key;
-          IconData val = entry.value;
-          String name = _buttonName[idx];
-
-          return CustomNavigationItem(
-            index: idx,
-            iconData: val,
-            onClickListener: (selectedIndex) async {
-              _pageController.animateToPage(
-                selectedIndex,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-              );
-            },
-            text: name,
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class CustomNavigationItem extends StatelessWidget {
-  final int? index;
-  final IconData? iconData;
-  final Function(int)? onClickListener;
-  final String text;
-
-  const CustomNavigationItem({
-    Key? key,
-    this.index,
-    this.iconData,
-    this.onClickListener,
-    required this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomInkWell(
-            onTap: () {
-              if (onClickListener != null) onClickListener!(index ?? 0);
-            },
-            child: SizedBox(
-              width: 48,
-              height: 48,
-              child: Column(
-                children: [
-                  Icon(
-                    iconData,
-                    color: Colors.black,
-                    size: 28,
-                  ),
-                  Text(text),
-                ],
-              ),
-            ),
+      bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.grey,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            // backgroundColor: Colors.red,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month),
+            label: 'appointment',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'history',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'chat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'profile',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.indigoAccent,
+        onTap: _onItemTapped,
       ),
     );
   }

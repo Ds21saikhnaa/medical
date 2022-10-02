@@ -8,6 +8,9 @@ class MyInput extends StatefulWidget {
   final Function(String)? onChanged;
   final TextInputType keyboardType;
   final bool? isHidden;
+  final Icon? left;
+  final Icon? right;
+  final Color? myColor;
   String? text;
   MyInput({
     Key? key,
@@ -15,6 +18,9 @@ class MyInput extends StatefulWidget {
     this.onChanged,
     this.isHidden = false,
     this.keyboardType = TextInputType.text,
+    this.left,
+    this.right,
+    this.myColor
   }) : super(key: key);
 
   @override
@@ -22,7 +28,6 @@ class MyInput extends StatefulWidget {
 }
 
 class _MyInputState extends State<MyInput> {
-  String _userName = '';
   bool _hasFocus = false;
   final FocusNode _focusNode = FocusNode();
   @override
@@ -43,16 +48,15 @@ class _MyInputState extends State<MyInput> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              // color: Colors.blueAccent,
               decoration: BoxDecoration(
-                // color: Colors.green,
+                color: widget.myColor,
                 border: Border.all(
                   width: 1,
                   color: _hasFocus
-                      ? Colors.black
-                      : _userName.isEmpty
-                          ? const Color.fromARGB(255, 244, 242, 242)
-                          : Colors.black,
+                      ? Colors.black : Colors.grey
+                      // : _userName.isEmpty
+                      //     ? const Color.fromARGB(255, 244, 242, 242)
+                      //     : Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -67,6 +71,8 @@ class _MyInputState extends State<MyInput> {
                 focusNode: _focusNode,
                 obscureText: widget.isHidden!,
                 decoration: InputDecoration(
+                    prefixIcon: widget.left,
+                    suffixIcon: widget.right,
                     border: InputBorder.none,
                     hintText: widget.title,
                     fillColor: Colors.blue

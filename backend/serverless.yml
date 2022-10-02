@@ -22,6 +22,12 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    events: 
+      - httpApi:
+          path: /
+          method: "GET"
+  user:
+    handler: handler.user
     events:
       - httpApi:
           path: /{routeName}/{id+}

@@ -9,7 +9,12 @@ class Appointment extends StatefulWidget {
   State<Appointment> createState() => _AppointmentState();
 }
 
-class _AppointmentState extends State<Appointment> {
+class _AppointmentState extends State<Appointment> with AutomaticKeepAliveClientMixin<Appointment> {
+  @override
+  void initState() {
+    super.initState();
+    print("appoint");
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -18,4 +23,6 @@ class _AppointmentState extends State<Appointment> {
       ),
     );
   }
+  @override
+  bool get wantKeepAlive => true;
 }

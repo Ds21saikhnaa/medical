@@ -9,7 +9,12 @@ class History extends StatefulWidget {
   State<History> createState() => _HistoryState();
 }
 
-class _HistoryState extends State<History> {
+class _HistoryState extends State<History> with AutomaticKeepAliveClientMixin<History> {
+  @override
+  void initState() {
+    super.initState();
+    print("history");
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -18,4 +23,6 @@ class _HistoryState extends State<History> {
       ),
     );
   }
+  @override
+  bool get wantKeepAlive => true;
 }

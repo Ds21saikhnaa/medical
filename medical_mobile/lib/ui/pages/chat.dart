@@ -9,7 +9,12 @@ class Chat extends StatefulWidget {
   State<Chat> createState() => _ChatState();
 }
 
-class _ChatState extends State<Chat> {
+class _ChatState extends State<Chat> with AutomaticKeepAliveClientMixin<Chat> {
+  @override
+  void initState() {
+    super.initState();
+    print("chat");
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -18,4 +23,6 @@ class _ChatState extends State<Chat> {
       ),
     );
   }
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -24,11 +24,13 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     var res = await _restApi.login({"email": email, "password": password});
     var conToken = res.data['token'];
+    var role = res.data["user"]["role"];
     if (res.success == true) {
       SpManager sharedPreference = SpManager();
       await sharedPreference.init();
       sharedPreference.saveAccessToken(conToken);
-      Get.offAllNamed(homeRoute);
+      sharedPreference.saveRole(role);
+      Get.offAllNamed(homeRoute, arguments: {"role": "role"} );
     }
   }
 
