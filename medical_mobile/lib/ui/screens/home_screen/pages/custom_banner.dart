@@ -20,14 +20,25 @@ class _CustomBannerState extends State<CustomBanner> {
           children: [
             Column(
               children: [
-                Text("Medical Checks!"),
-                Container(
-                  width: 250,
-                  color: Colors.grey,
-                  child:
-                  Text("Check your health condition regularly to minimize the incidence of disiese in the future"),
+                const Padding(
+                  padding: EdgeInsets.only(top: 14),
+                  child: Text("Medical Checks!",
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 28.0, top: 20),
+                  child: Container(
+                    width: 250,
+                    // color: Colors.grey,
+                    child:
+                    const Text("Check your health condition regularly to minimize the incidence of disiese in the future",
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(top: 20, left: 100),
                   height: 25,
                   width: 100,
                   decoration: BoxDecoration(

@@ -25,7 +25,8 @@ const userInfoSchema = new Schema(
             required: true
         },
         doctorType:{
-            type: String
+            type: mongoose.Schema.ObjectId,
+            ref: "DoctorType"
         }
     }
 );

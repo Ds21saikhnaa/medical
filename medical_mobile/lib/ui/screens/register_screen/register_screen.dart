@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../utils/routes.dart';
-import '../common/my_button.dart';
-import '../common/my_input.dart';
+import '../../../utils/routes.dart';
+import '../../common/my_button.dart';
+import '../../common/my_input.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

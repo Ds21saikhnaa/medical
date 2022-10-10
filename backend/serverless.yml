@@ -4,6 +4,10 @@ service: aws-node-http-api-project
 frameworkVersion: '3'
 useDotenv: true
 
+custom:
+  serverless-offline:
+    httpPort: 5000
+
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
@@ -18,6 +22,8 @@ provider:
     JWT_SECRET: ${env:JWT_SECRET}
     JWT_EXPIRESIN: ${env:JWT_EXPIRESIN}
     REGION: ${env:REGION}
+    PORT: ${env:PORT}
+  timeout: 20
 
 functions:
   hello:

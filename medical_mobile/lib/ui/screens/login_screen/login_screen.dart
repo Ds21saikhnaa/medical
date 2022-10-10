@@ -6,8 +6,8 @@ import 'package:medical_mobile/apis/rest_api.dart';
 import 'package:medical_mobile/ui/common/my_button.dart';
 import 'package:medical_mobile/ui/common/my_input.dart';
 
-import '../../utils/routes.dart';
-import '../../utils/sp_manager.dart';
+import '../../../utils/routes.dart';
+import '../../../utils/sp_manager.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await sharedPreference.init();
       sharedPreference.saveAccessToken(conToken);
       sharedPreference.saveRole(role);
-      Get.offAllNamed(homeRoute, arguments: {"role": "role"} );
+      Get.offAllNamed(homeRoute, arguments: {"role": "role"});
     }
   }
 

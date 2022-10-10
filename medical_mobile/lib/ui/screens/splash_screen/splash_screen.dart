@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/routes.dart';
-import '../../utils/sp_manager.dart';
+import '../../../utils/routes.dart';
+import '../../../utils/sp_manager.dart';
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 
